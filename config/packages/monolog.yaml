@@ -18,6 +18,11 @@ when@dev:
             #chromephp:
             #    type: chromephp
             #    level: info
+            security:
+                type: stream
+                path: '%kernel.logs_dir%/security.log'
+                level: debug
+
             console:
                 type: console
                 process_psr_3_messages: false
