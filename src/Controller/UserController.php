@@ -20,23 +20,21 @@ class UserController extends AbstractController
         
         $email = $data['email'] ?? null;
         $password = $data['password'] ?? null;
-        $username = $data['username'] ?? null; // Ajouter la récupération du username
+        $username = $data['username'] ?? null; 
     
-        // Vérifier que les données sont présentes
         if (!$email || !$password || !$username) {
             return new JsonResponse(['error' => 'Email, username, and password are required'], 400);
         }
     
-        // Créer un nouvel utilisateur
+        // Cree un nouvel utilisateur
         $user = new User();
         $user->setEmail($email);
-        $user->setUsername($username); // Assigner le username
+        $user->setUsername($username); 
     
         // Hacher le mot de passe
         $hashedPassword = $passwordHasher->hashPassword($user, $password);
         $user->setPassword($hashedPassword);
     
-        // Sauvegarder l'utilisateur en base de données
         $entityManager->persist($user);
         $entityManager->flush();
     
@@ -50,7 +48,7 @@ class UserController extends AbstractController
         $data = json_decode($request->getContent(), true);
         $email = $data['email'] ?? null;
         $password = $data['password'] ?? null;
-        $username = $data['username'] ?? null; // Ajouter la récupération du username
+        $username = $data['username'] ?? null; 
 
 
         if (!$email || !$password) {
